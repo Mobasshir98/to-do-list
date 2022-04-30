@@ -44,8 +44,13 @@ function deletecheck(event) {
     });
   }
   if (item.classList[0] === "completedbtn") {
-    storecompleted(item.parentElement.innerText);
     item.parentElement.classList.toggle("completed");
+    if(item.parentElement.classList.contains("completed")){
+      storecompleted(item.parentElement.innerText);
+    }
+    else{
+      removecomplete(item.parentElement.innerText);
+    }
   }
 }
 
@@ -139,6 +144,12 @@ function removevalue(todo){
   localStorage.setItem("todos",JSON.stringify(todos));
   let completed=completecheck();
   let completeindex=completed.indexOf(todo);
+  completed.splice(completeindex,1);
+  localStorage.setItem("completed", JSON.stringify(completed));
+}
+function removecomplete(completedvalue){
+  let completed=completecheck();
+  let completeindex=completed.indexOf(completedvalue);
   completed.splice(completeindex,1);
   localStorage.setItem("completed", JSON.stringify(completed));
 }
