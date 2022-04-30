@@ -135,4 +135,7 @@ select{
     .todolist{
         min-width:  80vw;
     }
+    .select::after{
+        pointer-events: all;
+    }
 }
